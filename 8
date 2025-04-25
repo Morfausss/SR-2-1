@@ -1,0 +1,81 @@
+#include <iostream>
+
+using namespace std;
+
+
+int* a(int arr1[], int size1, int arr2[], int size2, int& resultSize) {
+
+    int maxResultSize = (size1 < size2) ? size1 : size2;
+    int* result = new int[maxResultSize];
+
+    resultSize = 0;
+
+    for (int i = 0; i < size1; i++) {
+        bool isDuplicate = false;
+
+        for (int k = 0; k < resultSize; k++) {
+            if (arr1[i] == result[k]) {
+                isDuplicate = true;
+                break;
+            }
+        }
+
+        if (isDuplicate) {
+            continue;
+        }
+
+        for (int j = 0; j < size2; j++) {
+            if (arr1[i] == arr2[j]) {
+                result[resultSize] = arr1[i];
+                resultSize++;
+                break;
+            }
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    int size1, size2;
+
+    cout << "Enter size of first array: ";
+    cin >> size1;
+
+    int* arr1 = new int[size1];
+    cout << "Enter " << size1 << " integers for first array: ";
+    for (int i = 0; i < size1; i++) {
+        cin >> arr1[i];
+    }
+
+    cout << "Enter size of second array: ";
+    cin >> size2;
+
+    int* arr2 = new int[size2];
+    cout << "Enter " << size2 << " integers for second array: ";
+    for (int i = 0; i < size2; i++) {
+        cin >> arr2[i];
+    }
+
+    int resultSize;
+    int* commonElements = a(arr1, size1, arr2, size2, resultSize);
+
+    cout << "Common elements: ";
+    if (resultSize == 0) {
+        cout << "None";
+    } else {
+        for (int i = 0; i < resultSize; i++) {
+            cout << commonElements[i];
+            if (i < resultSize - 1) {
+                cout << ", ";
+            }
+        }
+    }
+    cout << endl;
+
+    delete[] arr1;
+    delete[] arr2;
+    delete[] commonElements;
+
+    return 0;
+}
