@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std;
+
+double a(double length, double width) {
+    return length * width;
+}
+
+int main() {
+    double length, width;
+
+    cout << "Enter the length: ";
+    cin >> length;
+
+    cout << "Enter the width: ";
+    cin >> width;
+
+    double area = a(length, width);
+
+    cout << "The area is: " << area << endl;
+
+    return 0;
+}
