@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string a(const string& str) {
+    string reversed;
+
+    for (size_t i = str.length(); i > 0; i--) {
+        reversed += str[i-1];
+    }
+
+    return reversed;
+}
+
+int main() {
+    string input;
+
+    cout << "Enter the sentence: ";
+    getline(cin, input);
+
+    string result = a(input);
+    cout << "Reversed sentence: " << result << endl;
+
+    return 0;
+}
